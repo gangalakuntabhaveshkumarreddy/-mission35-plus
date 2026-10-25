@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827"><link rel="manifest" href="manifest.json">
+<title>Mission 35 Plus</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div><p class="eyebrow">YOUR DAILY SYSTEM</p><h1>Mission 35 <span>Plus</span></h1><p class="muted">Show up. Track progress. Keep moving.</p></div><div class="date-pill" id="todayLabel"></div></header>
+<nav class="tabs"><button class="tab active" data-tab="home">Overview</button><button class="tab" data-tab="attendance">Attendance</button><button class="tab" data-tab="reminders">Reminders</button><button class="tab" data-tab="settings">Backup</button></nav>
+<main>
+<section class="panel active" id="home">
+<div class="hero"><div><p class="eyebrow">TODAY'S MISSION</p><h2 id="greeting">One day at a time.</h2><p class="muted">Build consistency, not perfection.</p></div><div class="score"><strong id="doneCount">0/0</strong><span>done today</span></div></div>
+<div class="section-head"><h3>Daily checklist</h3><button class="text-btn" id="resetToday">Reset checks</button></div>
+<div id="checklist" class="checklist"></div>
+<div class="section-head"><h3>Attendance snapshot</h3><button class="text-btn" data-go="attendance">Manage →</button></div>
+<div class="stats"><div class="stat"><span>Overall</span><strong id="overallPct">—</strong></div><div class="stat"><span>Classes logged</span><strong id="classesCount">0</strong></div><div class="stat"><span>Subjects</span><strong id="subjectsCount">0</strong></div></div>
+<div class="section-head"><h3>Upcoming reminders</h3><button class="text-btn" data-go="reminders">View all →</button></div><div id="upcoming" class="reminder-list"></div>
+</section>
+<section class="panel" id="attendance">
+<div class="section-head"><div><p class="eyebrow">COLLEGE TRACKER</p><h2>Attendance</h2></div></div>
+<p class="muted">Log each class by subject and date. Attendance percentages update automatically.</p>
+<form id="subjectForm" class="card form-grid"><label>Subject name<input id="subjectName" placeholder="e.g. Data Structures" required maxlength="80"></label><button class="primary" type="submit">Add subject</button></form>
+<div class="card">
+<h3>Log a class</h3><form id="attendanceForm" class="form-grid">
+<label>Subject<select id="attendanceSubject" required></select></label>
+<label>Date<input id="attendanceDate" type="date" required></label>
+<label>Status<select id="attendanceStatus"><option value="present">Present</option><option value="absent">Absent</option><option value="od">On duty / approved leave</option></select></label>
+<label>Note (optional)<input id="attendanceNote" maxlength="120" placeholder="Lecture / lab"></label>
+<button class="primary full" type="submit">Save attendance</button></form>
+<p class="tiny muted">If you log the same subject/date again, it updates that record instead of duplicating it.</p>
+</div>
+<div class="section-head"><h3>Subject summary</h3><button class="text-btn" id="exportAttendance">Export CSV</button></div><div id="subjectSummary" class="stack"></div>
+<div class="section-head"><h3>Recent records</h3><button class="text-btn danger-text" id="clearAttendance">Clear records</button></div><div id="attendanceRecords" class="stack"></div>
+</section>
+<section class="panel" id="reminders">
+<div class="section-head"><div><p class="eyebrow">STAY ON TRACK</p><h2>Reminders</h2></div><button class="secondary" id="enableNotifications">Enable notifications</button></div>
+<p class="muted">Add class, study, workout, skincare, sleep, or project reminders.</p>
+<form id="reminderForm" class="card form-grid">
+<label>Reminder title<input id="reminderTitle" required maxlength="100" placeholder="e.g. Review today's notes"></label>
+<label>Date<input id="reminderDate" type="date" required></label>
+<label>Time<input id="reminderTime" type="time" required></label>
+<label>Repeat<select id="reminderRepeat"><option value="none">Does not repeat</option><option value="daily">Daily</option><option value="weekdays">Weekdays</option><option value="weekly">Weekly</option></select></label>
+<label>Category<select id="reminderCategory"><option>College</option><option>Study</option><option>Fitness</option><option>Self-care</option><option>Mission 35</option><option>Other</option></select></label>
+<button class="primary full" type="submit">Add reminder</button>
+</form>
+<div class="notice"><strong>Android note:</strong> Browser notifications and reminders are not guaranteed when Chrome or the app is closed or suspended. Keep the app open for in-app due reminders, or use your phone's Clock/Calendar for critical alarms.</div>
+<div class="section-head"><h3>All reminders</h3></div><div id="reminderList" class="stack"></div>
+</section>
+<section class="panel" id="settings">
+<p class="eyebrow">YOUR DATA</p><h2>Backup & restore</h2><p class="muted">Your entries are stored in this browser on this device. Export a backup before clearing browser data or changing devices.</p>
+<div class="card stack"><button class="primary" id="exportBackup">Download full backup (JSON)</button><label class="file-label">Restore from backup<input id="importBackup" type="file" accept="application/json,.json"></label><button class="danger" id="wipeAll">Delete all app data</button></div>
+<div class="notice">Privacy: this starter app does not send attendance or reminders to a server. Do not enter your SIS password here.</div>
+</section>
+</main>
+<footer>MISSION 35 PLUS <span>Small steps count.</span></footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body></html>
